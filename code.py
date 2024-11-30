@@ -73,6 +73,15 @@ def grade_bubble_sheet(grouped_bubbles, answer_key, original_image, thresh):
     total_score = sum(scores)
     return marked_image, total_score
 
+def add_score_above_image(image, score):
+    font = cv2.FONT_HERSHEY_SIMPLEX
+    score_text = f"Total Score: {score:.2f}"
+    blank_space = 50
+    new_image = np.zeros((image.shape[0] + blank_space, image.shape[1], 3), dtype=np.uint8)
+    new_image[blank_space:, :] = image
+    cv2.putText(new_image, score_text, (20, 35), font, 1, (255, 255, 255), 2, cv2.LINE_AA)
+    return new_image
+
 # Image Path
 image_path = 'bubble_sheet.png'
 answer_key = [0, 1, 1, 3, 0, 0, 2, 1, 3, 0]
@@ -83,19 +92,22 @@ bubbles = detect_contours(thresh)
 grouped_bubbles = sort_bubbles_by_rows(bubbles)
 graded_image, score = grade_bubble_sheet(grouped_bubbles, answer_key, original_image, thresh)
 
+# Add the score above the image
+graded_image_with_score = add_score_above_image(graded_image, score)
+
 print(f"Total Score: {score}")
 
 # Fit window to screen
 screen_width = 512 
 screen_height = 512 
-image_height, image_width = graded_image.shape[:2]
+image_height, image_width = graded_image_with_score.shape[:2]
 scale_width = screen_width / image_width
 scale_height = screen_height / image_height
 scale = min(scale_width, scale_height)
 new_width = int(image_width * scale)
 new_height = int(image_height * scale)
-scaled_image = cv2.resize(graded_image, (new_width, new_height))
+scaled_image = cv2.resize(graded_image_with_score, (new_width, new_height))
 
-cv2.imshow("Graded Bubble Sheet", scaled_image)
+cv2.imshow("Graded Bubble Sheet with Score", scaled_image)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
