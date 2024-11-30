@@ -1,4 +1,4 @@
-# Automated-Bubble-Sheet-Grading-System-for-MCQs
+# Automated Bubble Sheet Grading System for MCQs
  
 ### **Repository Description**  
 
