@@ -1,4 +1,4 @@
-# Automated-Bubble-Sheet-Grading-System-for-MCQs
+# Automated Bubble Sheet Grading System for MCQs
  
 ### **Repository Description**  
 
@@ -6,8 +6,9 @@ This repository contains an **Automated Bubble Sheet Grading System** for multip
 
 - **Correctly filled bubbles**  
 - **Incorrectly filled bubbles**  
-- **Multiple filled bubbles** (resulting in penalties)  
+- **Multiple filled bubbles**
 
+  <img src="https://github.com/user-attachments/assets/6c7ed12a-e43d-446b-8019-4819d09503ff" alt="Bubble Sheet Example" height="350"/>
 ### **Key Features**  
 - **Automated Grading**: Efficient detection and grading of MCQ answers.  
 - **Negative Marking Support**: Penalizes wrong and multiple selections.  
